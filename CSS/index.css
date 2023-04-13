@@ -1,0 +1,15 @@
+.tool-bar
+{
+    width: 100%;
+    background-color: rgb(47, 47, 47);
+    height: 60px;
+}
+
+.container
+{
+    margin-top: 20px;
+}
+footer {
+    background-color: rgb(47, 47, 47);
+    height: 120px;
+}
