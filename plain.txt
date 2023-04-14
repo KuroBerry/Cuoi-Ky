@@ -1,11 +1,48 @@
-<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
-          <a href=""
-            ><div class="card">
-              <img class="card-img-top" src="avatar.png" alt="Card image" />
-              <div class="card-body">
-                <h4 class="card-title">Jane Doe</h4>
-                <p class="card-text">Interior Designer</p>
-              </div>
-            </div></a
-          >
+<main>
+  <div class="movie-container">
+    <h2 class="movie-title">Tên phim</h2>
+    <video controls>
+      <source src="movie.mp4" type="video/mp4">
+      <source src="movie.ogg" type="video/ogg">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="recommended-movies">
+    <h3>Danh sách đề xuất các phim</h3>
+    <ul>
+      <li><a href="#">Phim 1</a></li>
+      <li><a href="#">Phim 2</a></li>
+      <li><a href="#">Phim 3</a></li>
+      <li><a href="#">Phim 4</a></li>
+      <li><a href="#">Phim 5</a></li>
+    </ul>
+  </div>
+  <div class="comment-section">
+    <h3>Bình luận</h3>
+    <form>
+      <input type="text" placeholder="Họ tên">
+      <textarea placeholder="Nhập bình luận"></textarea>
+      <button type="submit">Gửi</button>
+    </form>
+    <ul class="comment-list">
+      <li>
+        <div class="comment-header">
+          <span class="comment-author">Tên tác giả</span>
+          <span class="comment-time">3 giờ trước</span>
         </div>
+        <div class="comment-body">
+          Nội dung bình luận
+        </div>
+      </li>
+      <li>
+        <div class="comment-header">
+          <span class="comment-author">Tên tác giả</span>
+          <span class="comment-time">2 ngày trước</span>
+        </div>
+        <div class="comment-body">
+          Nội dung bình luận
+        </div>
+      </li>
+    </ul>
+  </div>
+</main>

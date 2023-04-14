@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise 1</title>
 
-    <script src="./Javascript/index.js"></script>
-    <link rel="stylesheet" href="./CSS/index.css" />
+    <link rel="stylesheet" href="./PHP/index.php" />
+    <link rel="stylesheet" href="./CSS/show.css" />
 
     <!-- Latest compiled and minified CSS -->
     <link
@@ -24,7 +24,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-   <body style="background-color: rgb(30, 30, 30);">
+
+  <body style="background-color: rgb(30, 30, 30)">
     <header>
       
 
@@ -47,29 +48,53 @@
         </form>
       </div>
     </header>
-    <section id="movie">
-      <h2>Phim mới nhất</h2>
-      <div class="container">
-        <div class="row">
-        <?php
-
-          //Vòng lặp chạy các phim có trong database
-            for($i = 0; $i < 20; $i++)
-            {
-              ?>
-              <div class="col col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 mb-3">
-                <a href="show.php">
-                <div class="movie-item">
-                  <img src="avatar.png" alt="Phim 1" />
-                  <h3>Tên phim 1</h3>
-                </div></a>
-              </div>
-              <?php
-            }
-          ?>
+    
+    <div class="container">
+      <section class="movie-description">
+        <div class="poster">
+          <img src="avatar.png" alt="Movie Poster" />
         </div>
+        <div class="details">
+          <h2 class="title">Tên phim</h2>
+          <p class="author">Tác giả: Tên tác giả</p>
+          <p class="cast">Diễn viên: Tên diễn viên 1, Tên diễn viên 2, Tên diễn viên 3</p>
+          <p class="genre">Thể loại: Thể loại phim</p>
+          <p class="plot">Nội dung: Nội dung tóm tắt của phim</p>
+          <p class="release-date">Ngày phát hành: Ngày tháng năm phát hành</p>
+        </div>
+      </section>
+    </div>
+
+
+    <main>
+      <div class="container video_container">
+          <div class="col-lg-8">
+            <video controls>
+              <source src="path/to/movie.mp4" type="video/mp4">
+            </video>
+          </div>        
       </div>
-    </section>
+
+      <div class="container comment_container">
+        <div class="col-lg-4">
+            <div class="comments">
+              <h2>Bình luận</h2>
+              <form>
+                <div class="form-group">
+                  <label for="name">Họ tên</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                  <label for="comment">Bình luận</label>
+                  <textarea class="form-control" id="comment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Đăng bình luận</button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </main>
+
     <footer>
       <div class="container">
         <div class="row">
