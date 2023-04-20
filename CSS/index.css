@@ -1,185 +1,295 @@
-/* CSS cho phần header */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+*{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: border-box;
+    scroll-padding-top: 2rem;
 }
 
-h2{
-    color: white;
-}
-nav ul {
-    list-style: none;
-    display: flex;
+:root{
+    --main-color: rgb(242, 172, 33);
+    --hover-color: rgba(1, 1, 1, 0);
+    --body-color: rgb(30,30,30);
+    --container-color: #2d2e37;
+    --text-color: #ffffff;
 }
 
-nav ul li a {
-    color: #fff;
+a
+{
     text-decoration: none;
-    padding: 10px;
 }
 
-nav ul li a:hover {
-    background-color: #555;
+li
+{
+    list-style: none;
 }
 
-.search {
-    margin-left: auto;
+section{
+    padding: 3rem 0 2rem;
 }
 
-.search form input[type="text"] {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    font-size: 16px;
-}
 
-.search form button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 5px;
+
+.bx
+{
     cursor: pointer;
 }
 
-/* CSS cho phần phim */
-#movie {
-    padding: 20px;
+body
+{
+    background-color: var(--body-color);
+    color: var(--text-color);
 }
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col {
-    flex: 1;
-    padding: 10px;
-    text-align: center;
-}
-
-.col img {
+.container
+{
     width: 100%;
-    border-radius: 5px;
+    margin: auto;
+    max-width: 1060px;
 }
 
-.col h3 {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.col:hover {
-    box-shadow: 0px 0px 5px #aaa;
-    transform: scale(1.05);
-}
-
-/*CSS cho phần thẻ phim*/
-
-.movie-item {
-    position: relative;
-    /* Set position to relative to allow absolute positioning of the title */
-}
-
-.movie-item img {
-    width: 100%;
-    /* Make sure the image fills the container */
-}
-
-.movie-item h3 {
-    position: absolute;
-    /* Set position to absolute to allow placement on top of the image */
-    bottom: 0;
-    /* Place the title at the bottom of the container */
+header
+{
+    position: fixed;
+    top: 0;
     left: 0;
-    /* Place the title at the left of the container */
     width: 100%;
-    /* Make the title fill the container */
-    padding: 10px;
-    /* Add padding to the title for readability */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Set background color of the title */
-    color: white;
-    /* Set color of the title */
-    opacity: 0;
-    /* Set opacity to 0 by default */
-    transition: opacity 0.3s ease-in-out;
-    /* Add transition effect */
+    background-color: var(--body-color);
+    z-index: 100;
 }
-
-.movie-item:hover h3 {
-    opacity: 1;
-    /* Set opacity to 1 when hovering over the movie item */
-}
-
-.movie-item:hover img {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Add box-shadow when hovering over the movie item */
-}
-
-/* CSS cho phần footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.row {
+.nav
+{
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
 }
 
-.col {
-    flex: 1;
-    padding: 10px;
-    text-align: center;
+.logo
+{
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 auto 0 0;
 }
 
-.col h3 {
-    margin-top: 0;
-    font-size: 18px;
+.logo span{
+    color: var(--main-color);
 }
 
-.col p {
-    font-size: 14px;
+.search-box{
+    max-width: 240px;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    column-gap: 0.7rem;
+    padding: 8px 15px;
+    background-color: var(--container-color);
+    border-radius: 4rem;
+    margin-right: 1rem;
 }
 
-.col ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.search-box .bx:hover
+{
+    color: var(--main-color);
 }
 
-.col ul li {
-    margin-bottom: 5px;
-}
-
-.col ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.col ul li a:hover {
-    text-decoration: underline;
-}
-
-hr {
+#search-input
+{
+    width: 100%;
     border: none;
-    border-top: 1px solid #000000;
-    margin: 20px 0;
+    outline: none;
+    color: var(--text-color);
+    background: transparent;
+    font-size: 1rem;
 }
 
-footer p {
-    font-size: 14px;
-    margin: 0;
-    text-align: center;
+.navbar
+{
+    position: fixed;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 2.1rem;
+}
+
+.nav-link
+{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.nav-link:hover
+{
+    color: var(--text-color);
+    transition: 0.3s all linear;
+    transform: scale(1.1);
+}
+
+.nav-link .bx{
+    font-size: 1.6rem;
+}
+
+.nav-title
+{
+    text-transform: uppercase; 
+    font-size: 1.1rem;
+}
+
+.home
+{
+    position: relative;
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    margin-top: 5rem !important;
+    border: 0.5rem;
+}
+
+.home-img
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 0.5rem;
+}
+
+.home-text
+{
+    padding-left: 40px;
+}
+
+.home-title
+{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.home-text p{
+    font-size: 1rem;
+    margin: 10px 0 20px;
+    color: var(--main-color);
+}
+
+.watch-btn
+{
+    display: flex;
+    align-items: center;
+    column-gap: 0.8rem;
+    color: var(--text-color);
+}
+
+.watch-btn .bx
+{
+    font-size: 60px;
+    background: var(--hover-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watch-btn .bx:hover {
+    background: var(--main-color);
+    border: 3px solid #fff;
+}
+
+.watch-btn span
+{
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.heading
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--container-color);
+    padding: 8px 14px;
+    border: 1px solid hsl(200, 100%, 99% / 5%);
+    margin-bottom: 2rem;
+}
+
+.heading-title
+{
+    margin: auto;
+    font-size: 1.2rem;
+}
+
+.movie-box
+{
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+}
+
+.movie-box-img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-box .box-text
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    background: linear-gradient(8deg, hsl(240 17% 14% /74%) 14%,
+                                      hsl(240 17% 14% /14%) 44%);
+    overflow: hidden;
+}
+
+.movie-title
+{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.movie-type
+{
+    font-size: 0.938rem;
+    color: var(--main-color);
+}
+
+.play-btn
+{
+    position: absolute;
+    bottom: 40%;
+    right: 45%;
+}
+
+.swiper-btn
+{
+    display: flex;
+}
+
+.swiper-button-next,
+.swiper-button-prev
+{
+    position: static !important;
+    margin: 0 0 0 10px !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    color: var(--text-color);
+    font-size: 19px !important;
+    font-weight: 700;
 }
