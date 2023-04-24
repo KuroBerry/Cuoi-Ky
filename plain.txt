@@ -1,45 +1,20 @@
-<div class="swiper-slide">
-          <div class="movie-box">
-            <img src="./img/poster/spiderman.jpg" class="moive-box-img" />
-            <div class="box-text">
-              <h2 class="movie-title">Người nhện 3: Vô gia cư</h2>
-              <span>Hành động</span>
+ foreach($data as $d)
+      {
+        ?>
 
-              <a href="" class="watch-btn play-btn">
-                <i class="bx bxl-play-store"></i>
-                <span>Xem phim</span>
-              </a>
-            </div>
+        <div class="movie-box">
+          <img src="<?= $d["poster"]?>" class="movie-box-img">
+          <div class="box-text">
+            <h2><?= $d["ten_phim"]?></h2>
+            <span class="movie-type"><?= $d["ten_quocgia"]?></span>
+
+            <a href="" class="watch-btn play-btn">
+              <i class='bx bx-play-circle' ></i>
+              
+            </a>
+
           </div>
         </div>
-
-        <div class="swiper-slide">
-          <div class="movie-box">
-            <img src="./img/poster/shazam.jpg" class="moive-box-img" />
-            <div class="box-text">
-              <h2 class="movie-title">Người nhện 3: Vô gia cư</h2>
-              <span>Hành động</span>
-
-              <a href="" class="watch-btn play-btn">
-                <i class="bx bxl-play-store"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="movie-box">
-            <img src="./img/poster/avenger.jpg" class="moive-box-img" />
-            <div class="box-text">
-              <h2 class="movie-title">Người nhện 3: Vô gia cư</h2>
-              <span>Hành động</span>
-
-              <a href="" class="watch-btn play-btn">
-                <i class="bx bxl-play-store"></i>
-                <span>Xem phim</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      
+        <?php
+      }
