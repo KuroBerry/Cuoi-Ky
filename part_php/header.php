@@ -6,10 +6,12 @@
     </a>
 
     <!-- Thanh tim kiem -->
-    <div class="search-box">
-    <input type="search" name="" id="search-input" placeholder="Tìm kiếm phim" />
-    <i class="bx bx-search"></i>
-    </div>
+    <form action="search.php" method="get">
+        <div class="search-box">
+            <input type="search" name="search_key" id="search-input" placeholder="Tìm kiếm phim" />
+            <i class="bx bx-search"></i>
+        </div>
+    </form>
 
     <!-- Thanh cong cu -->
     <div class="navbar">

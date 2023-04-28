@@ -14,6 +14,17 @@
     --text-color: #ffffff;
 }
 
+html::-webkit-scrollbar
+{
+    width: 0.5rem;
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb
+{
+    background: var(--main-color);
+}
+
 a {
     text-decoration: none;
 }
@@ -150,16 +161,93 @@ header {
     border: 3px solid #fff;
 }
 
+.heading-theater {
+    position: relative;
+    margin-top: 2rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--container-color);
+    padding: 8px 14px;
+    border: 1px solid hsl(200, 100%, 99% / 5%);
+    margin-bottom: 2rem;
+}
+
+.heading-title {
+    margin: auto;
+    font-size: 1.2rem;
+}
+
+.movie-box {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.movie-box-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-box .box-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    background: linear-gradient(8deg, hsl(240 17% 14% /74%) 14%,
+            hsl(240 17% 14% /14%) 44%);
+    overflow: hidden;
+}
+
+.movie-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.movie-type {
+    font-size: 0.938rem;
+    color: var(--main-color);
+}
+
+.play-btn {
+    position: absolute;
+    bottom: 40%;
+    right: 45%;
+}
+
+.swiper-btn {
+    display: flex;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: static !important;
+    margin: 0 0 0 10px !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: var(--text-color);
+    font-size: 19px !important;
+    font-weight: 700;
+}
+
 /* CSS cho phần chiếu phim */
-.play-container
-{
+.play-container {
     position: relative;
     min-height: 540px;
     margin-top: 5rem !important;
 }
 
-.play-img
-{
+.play-img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -168,8 +256,7 @@ header {
     z-index: -1;
 }
 
-.play-text
-{
+.play-text {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -180,17 +267,15 @@ header {
     justify-content: flex-end;
     padding: 40px;
     background: linear-gradient(8deg, hsl(240 17% 14% /74%) 14%,
-                                      hsl(240 17% 14% /14%) 44%);
+            hsl(240 17% 14% /14%) 44%);
 }
 
-.play-text h2
-{
+.play-text h2 {
     font-size: 1.5rem;
     font-weight: 600;
 }
 
-.rating
-{
+.rating {
     display: flex;
     align-items: center;
     font-size: 1.1rem;
@@ -198,29 +283,26 @@ header {
     margin-top: 4px;
 }
 
-.tags
-{
+.tags {
     display: flex;
     align-items: center;
     column-gap: 8px;
     margin: 1rem 0;
 }
 
-.tags span
-{
+.tags span {
     background: var(--container-color);
     padding: 0 4px;
 }
 
 /* Video */
 
-.video-container
-{
+.video-container {
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
-    align-self: center;
+    display: none;
+    align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
@@ -228,25 +310,96 @@ header {
     z-index: 400;
 }
 
-.video-box
+.video-container.show-video
 {
+    display: flex;
+}
+
+.video-box {
     position: relative;
     width: 82%;
 }
-.video-box #myvideo
-{
+
+.video-box #myvideo {
     width: 100%;
     aspect-ratio: 16/9;
 }
 
-.close-video
-{
+.close-video {
     position: absolute;
     top: -3rem;
     right: 0;
     font-size: 40px;
     color: var(--main-color);
 }
+
+.about-movie
+{
+    margin-top: 2rem !important;
+}
+
+.about-movie h2{
+    font-size: 2rem !important;
+    font-weight: 600;
+    color: var(--main-color);
+
+}
+
+.about-movie p
+{
+    max-width: 600px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+/* Dien vien */
+.cast-heading
+{
+    margin-top: 2rem !important; 
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--main-color);
+}
+
+.cast
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px,150px));
+    gap: 1rem;
+}
+
+.cast-img
+{
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Trailer */
+
+.trailer-heading
+{
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.trailer.container {
+    position: relative;
+    min-height: 540px;
+    margin-top: 3rem !important;
+}
+
+.trailer.container iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 /* CSS cho phần footer */
 footer {
     background-color: #333;

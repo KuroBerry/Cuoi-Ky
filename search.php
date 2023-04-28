@@ -19,40 +19,17 @@
   include "./part_php/header.php";
   require_once'./PHP/connection.php';
   
-  if(isset($_GET['movie']))
+  if(isset($_GET['search_key']))
   {
-    $path = $_GET['movie'];
+    $key = $_GET['search_key'];
   }
   else
   {
-    $path ='';
+    $key ='';
   }
   
-  if($path == 'phimmoi')
-  {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_moi.php";
-  }
-  else if($path == 'phimbo')
-  {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_bo.php";
-  }
-  else if($path == 'phimle')
-  {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_le.php";
-  }
-  else if($path == 'phimtruyenhinh')
-  {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_truyen_hinh.php";
-  }
-  else
-  {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_moi.php";
-  }
+  include "./part_php/search_result.php";
+  
 
   include "./part_php/footer.php";
   ?>

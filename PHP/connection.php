@@ -32,4 +32,38 @@
 
         return array('code' => 0, 'data' => $data);
     }
+
+    function tim_kiem($key)
+    {
+        $data = phim_moi()['data'];
+        $result = array();
+
+        foreach ($data as $d)
+        {
+            if (strpos(strtolower($d["ten_phim"]), strtolower($key)) !== false) {
+                $result[] = $d;
+            }
+
+        }
+
+        return $result;
+    }
+
+    function movieInfo($id)
+    {
+        $id = (int)$id;
+        $sql = 'SELECT * FROM danhsach_phim WHERE ID = ?';
+        $conn = connection();
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('i', $id);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'message' => "There's an error occured, please try again later");
+        }
+
+        $result = $stm -> get_result();
+        return array('code' => 0, 'data' => $result->fetch_assoc());
+    }
 ?>

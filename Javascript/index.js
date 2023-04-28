@@ -36,3 +36,21 @@ var swiper = new Swiper(".theater-content", {
     }
   }
 });
+
+
+//Show video
+let playButton = document.querySelector(".play-movie");
+let video = document.querySelector(".video-container");
+let closeButton = document.querySelector(".close-video");
+let myVideo = document.querySelector("#myvideo");
+
+playButton.onclick = () => {
+  video.classList.add("show-video");
+  console.log(video.classList);
+  myVideo.play();
+}
+
+closeButton.onclick = () => {
+  video.classList.remove("show-video");
+  myVideo.pause();
+}
