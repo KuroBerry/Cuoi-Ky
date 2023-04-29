@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2023 at 09:41 PM
+-- Generation Time: Apr 29, 2023 at 10:24 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -29,30 +29,57 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `danhsach_phim` (
   `ID` int(11) NOT NULL,
+  `de_muc` text NOT NULL,
   `ten_phim` text NOT NULL,
   `poster` text NOT NULL,
   `back_ground` text NOT NULL,
   `ma_quoc_gia` int(11) DEFAULT NULL,
   `nam_phat_hanh` varchar(50) NOT NULL,
   `thoi_luong` varchar(50) NOT NULL,
+  `the_loai` text NOT NULL,
   `dien_vien` text NOT NULL,
   `chi_tiet` text DEFAULT NULL,
-  `trailer` text NOT NULL
+  `trailer` text NOT NULL,
+  `rate` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `danhsach_phim`
 --
 
-INSERT INTO `danhsach_phim` (`ID`, `ten_phim`, `poster`, `back_ground`, `ma_quoc_gia`, `nam_phat_hanh`, `thoi_luong`, `dien_vien`, `chi_tiet`, `trailer`) VALUES
-(1, 'Người Nhện 3: Vô Gia Cư', 'https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg', 'https://ecdn.game4v.com/g4v-content/uploads/2021/12/22085855/NWH-doanh-thu-01-game4v-1640138334-22.jpg', 239, '2022', '120', 'Tom Holland', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/OB3g37GTALc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(2, 'Shazam 2', 'https://upload.wikimedia.org/wikipedia/vi/5/59/Shazam_Fury_of_the_Gods_VN_poster.jpg', 'https://images.thedirect.com/media/article_full/shaq.jpg', 239, '2023', '90', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Zi88i4CpHe4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(3, 'Kimetsu no Yaiba: Làng thợ rèn', 'https://static2.vieon.vn/vieplay-image/poster_v4/2022/07/05/gc3b0iah_660x946-thanhguomdietquy-chuyentauvotan-demo_360_534.jpg', 'https://cdn.popsww.com/blog/sites/2/2023/02/thanh-guom-diet-quy-lang-tho-ren.jpg', 112, '2023', '23', '---', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/d2lYcxPUQQk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(4, 'Oshi no Ko', 'https://static.lag.vn/upload/news/23/04/13/anime-oshi-no-ko-tap-2_LDRP.jpg?w=1200&h=800&crop=pad&scale=both&encoder=wic&subsampling=444', 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2022/06/oshinoko_teaservisual-1-e1654787786281.jpg', 112, '2023', '23', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zntY4A4GPU0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(5, 'Kimetsu no Yaiba', 'https://m.media-amazon.com/images/I/71QA1m0KGKL.jpg', 'https://c4.wallpaperflare.com/wallpaper/62/879/672/anime-digital-art-artwork-2d-kimetsu-no-yaiba-hd-wallpaper-preview.jpg', 112, '2022', '23', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6vMuWuWlW4I\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(6, 'Kimetsu no Yaiba: Chuyến tàu vô tận', 'https://kenh14cdn.com/203336854389633024/2020/12/10/photo-1-16062409533771255397345-16075882128941613413789.jpg', 'https://touchcinema.com/storage/phim-thanh-guom-diet-quy-chuyen-tau-vo-tan/phim-thanh-guom-diet-quy-chuyen-tau-vo-tan.jpg', 112, '2022', '23 ', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/sAU6Istwz6c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(7, 'Kimetsu no Yaiba: Kĩ Viện Trấn', 'https://www.elleman.vn/wp-content/uploads/2022/02/07/211157/Kimetsu-no-Yaiba-Season-2-elle-man-6.jpg', 'https://pic-bstarstatic.akamaized.net/ugc/75e172efce51e605d31bd84c2d034152.jpeg@720w_405h_1e_1c_90q', 112, '2022', '23', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/o5EXVFaNrqw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(8, 'Kimetsu Gakuen Monogatari:Valentine Specials', 'https://animet.net/upload/images/2021/02/kimetsu-gakuen-monogatari-valentine-hen-thumbnail.jpg', 'https://pbs.twimg.com/media/FLj_Hp4WQAIrF5B?format=jpg&name=4096x4096', 112, '2023', '23', '', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tSS8aOBCBas\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>');
+INSERT INTO `danhsach_phim` (`ID`, `de_muc`, `ten_phim`, `poster`, `back_ground`, `ma_quoc_gia`, `nam_phat_hanh`, `thoi_luong`, `the_loai`, `dien_vien`, `chi_tiet`, `trailer`, `rate`) VALUES
+(1, 'chieu_rap,phim_le', 'Người Nhện 3: Vô Gia Cư', 'https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg', 'https://ecdn.game4v.com/g4v-content/uploads/2021/12/22085855/NWH-doanh-thu-01-game4v-1640138334-22.jpg', 239, '2022', '120', '1,2,3,4', 'Tom Holland', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/OB3g37GTALc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(2, 'chieu_rap,phim_le', 'Shazam 2', 'https://upload.wikimedia.org/wikipedia/vi/5/59/Shazam_Fury_of_the_Gods_VN_poster.jpg', 'https://images.thedirect.com/media/article_full/shaq.jpg', 239, '2023', '90', '5,6,7,8', 'Zachary Levi', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Zi88i4CpHe4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(3, 'phim_bo', 'Kimetsu no Yaiba: Làng thợ rèn', 'https://static2.vieon.vn/vieplay-image/poster_v4/2022/07/05/gc3b0iah_660x946-thanhguomdietquy-chuyentauvotan-demo_360_534.jpg', 'https://cdn.popsww.com/blog/sites/2/2023/02/thanh-guom-diet-quy-lang-tho-ren.jpg', 112, '2023', '23', '12,345,56', 'Satomi Sato,Reina Ueda', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/d2lYcxPUQQk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(4, 'phim_bo', 'Oshi no Ko', 'https://static.lag.vn/upload/news/23/04/13/anime-oshi-no-ko-tap-2_LDRP.jpg?w=1200&h=800&crop=pad&scale=both&encoder=wic&subsampling=444', 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2022/06/oshinoko_teaservisual-1-e1654787786281.jpg', 112, '2023', '23', '345,789,234,01', 'Rie Takahashi ', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zntY4A4GPU0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(5, 'phim_bo', 'Kimetsu no Yaiba', 'https://m.media-amazon.com/images/I/71QA1m0KGKL.jpg', 'https://c4.wallpaperflare.com/wallpaper/62/879/672/anime-digital-art-artwork-2d-kimetsu-no-yaiba-hd-wallpaper-preview.jpg', 112, '2022', '23', '234,2345,5456,2134', 'Satomi Sato,Reina Ueda', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6vMuWuWlW4I\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(6, 'chieu_rap', 'Kimetsu no Yaiba: Chuyến tàu vô tận', 'https://kenh14cdn.com/203336854389633024/2020/12/10/photo-1-16062409533771255397345-16075882128941613413789.jpg', 'https://touchcinema.com/storage/phim-thanh-guom-diet-quy-chuyen-tau-vo-tan/phim-thanh-guom-diet-quy-chuyen-tau-vo-tan.jpg', 112, '2022', '23 ', '34545,344313,123,123', 'Satomi Sato,Reina Ueda', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/sAU6Istwz6c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(7, 'phim_bo', 'Kimetsu no Yaiba: Kĩ Viện Trấn', 'https://www.elleman.vn/wp-content/uploads/2022/02/07/211157/Kimetsu-no-Yaiba-Season-2-elle-man-6.jpg', 'https://pic-bstarstatic.akamaized.net/ugc/75e172efce51e605d31bd84c2d034152.jpeg@720w_405h_1e_1c_90q', 112, '2022', '23', '8384,3499,349ws', 'Satomi Sato,Reina Ueda', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/o5EXVFaNrqw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', ''),
+(8, 'truyen_hinh', 'Kimetsu Gakuen Monogatari:Valentine Specials', 'https://animet.net/upload/images/2021/02/kimetsu-gakuen-monogatari-valentine-hen-thumbnail.jpg', 'https://pbs.twimg.com/media/FLj_Hp4WQAIrF5B?format=jpg&name=4096x4096', 112, '2023', '23', 'kdirf,sdfjs,dsj', 'Satomi Sato,Reina Ueda', NULL, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tSS8aOBCBas\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dien_vien`
+--
+
+CREATE TABLE `dien_vien` (
+  `ID` int(11) NOT NULL,
+  `ten_dien_vien` text NOT NULL,
+  `anh_dien_vien` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dien_vien`
+--
+
+INSERT INTO `dien_vien` (`ID`, `ten_dien_vien`, `anh_dien_vien`) VALUES
+(1, 'Diễn viên', 'https://atlasfamilyhealthcenter.com/wp-content/uploads/2017/12/blank-avatar.png'),
+(2, 'Zachary Levi', 'https://flxt.tmsimg.com/assets/272823_v9_bb.jpg'),
+(3, 'Rie Takahashi ', 'https://static.tvtropes.org/pmwiki/pub/images/takahashi_rie.jpg'),
+(4, 'Satomi Sato', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtdG5e_kOZA589dxknr4FbabGlgDVVhNN7Mw&usqp=CAU'),
+(5, 'Reina Ueda', 'https://www.themoviedb.org/t/p/w500/hlzrvBzeSYejeaTSZDvEWE44Qjj.jpg'),
+(6, 'Tom Holland', 'https://flxt.tmsimg.com/assets/733885_v9_bb.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,6 +361,12 @@ ALTER TABLE `danhsach_phim`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `dien_vien`
+--
+ALTER TABLE `dien_vien`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `quoc_gia`
 --
 ALTER TABLE `quoc_gia`
@@ -348,6 +381,12 @@ ALTER TABLE `quoc_gia`
 --
 ALTER TABLE `danhsach_phim`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `dien_vien`
+--
+ALTER TABLE `dien_vien`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `quoc_gia`
