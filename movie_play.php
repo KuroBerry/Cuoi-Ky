@@ -22,6 +22,10 @@
   
   $data = movieInfo($id)['data'];
   
+  $categories_group = $data['the_loai'];
+
+  $categories = explode(",", $categories_group);
+
   ?>
 
   <!-- Phần trình chiếu phim -->
@@ -41,8 +45,16 @@
       </div>
 
       <div class="tags">
-        <span>Hài hước</span>
-        <span>Tình cảm</span>
+        <?php
+
+        foreach ($categories as $c)
+        {
+          ?>
+          <span><?= $c ?></span>
+          <?php
+        }
+
+        ?>
       </div>
         
       <div class="watch-btn play-video-btn">
@@ -75,37 +87,95 @@
     <h2 class="cast-heading">Diễn Viên</h2>
 
     <div class="cast">
-      <div class="cast-box">
-        <img src="https://leosigh.com/wp-content/uploads/2021/06/Haruka-Nagashima.jpg" alt="" class="cast-img">
-        <span class="cast-title">Tên diễn viên</span>
-      </div>
 
-      <div class="cast-box">
-        <img src="https://leosigh.com/wp-content/uploads/2021/06/Haruka-Nagashima.jpg" alt="" class="cast-img">
-        <span class="cast-title">Tên diễn viên</span>
-      </div>
+    <?php
+    $actor = actor_display($data['dien_vien']);
 
-      <div class="cast-box">
-        <img src="https://leosigh.com/wp-content/uploads/2021/06/Haruka-Nagashima.jpg" alt="" class="cast-img">
-        <span class="cast-title">Tên diễn viên</span>
-      </div>
+    foreach ($actor as $a)
+    {
+      ?>
 
-      <div class="cast-box">
-        <img src="https://leosigh.com/wp-content/uploads/2021/06/Haruka-Nagashima.jpg" alt="" class="cast-img">
-        <span class="cast-title">Tên diễn viên</span>
-      </div>
+        <div class="cast-box">
+          <img src="<?= $a['anh_dien_vien'] ?>" alt="" class="cast-img">
+          <span class="cast-title"><?= $a['ten_dien_vien'] ?></span>
+        
+        </div>
+      <?php
+    }
+    ?>
+
     </div>
 
   </div>
 
   <div class="trailer container">
-    <h1 class="trailer-heading">Trailer</h1>
+    <h2 class="trailer-heading">Trailer</h2>
     <?=$data['trailer'] ?>  
   </div>
 
-  <div class="comment container">
-    
-  </div>
+  <!-- Phần bình luận -->
+
+    <div class="comment container">
+
+      <div class="comment-heading">
+        <h2>
+          Bình luận
+        </h2>
+      </div>
+
+      <div class="form-container">
+        <form action="" method="get">
+            <div class="comment-input-container">
+              <input
+              class="comment-input"
+              type="text"
+              name="comment"
+              id="comment"
+              placeholder="Viết bình luận của bạn"
+              autocomplete="off"
+            /> 
+            </div> 
+
+          <button type="submit" class="submit-btn">Đăng</button>
+        </form>
+      </div>
+
+      <div class="line"></div>
+
+      <ul class="comment-list">
+
+        <li class="comment">
+          <div class="comment-avatar">
+            <img src="https://via.placeholder.com/50" alt="Avatar">
+          </div>
+          <div class="comment-content">
+            <h3 class="comment-author">John Doe</h3>
+            <p class="comment-text">Hé lô cả nhà iu của Kem!!!</p>
+            <div class="comment-meta">
+              <span class="comment-date">April 27, 2023 at 3:30pm</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="comment">
+          <div class="comment-avatar">
+            <img src="https://via.placeholder.com/50" alt="Avatar">
+          </div>
+          <div class="comment-content">
+            <h3 class="comment-author">Jane Doe</h3>
+            <p class="comment-text">Hé lô, phim này hay vãi </p>
+            <div class="comment-meta">
+              <span class="comment-date">April 28, 2023 at 10:15am</span>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+
+  
+</div>
   <?php
   include "./part_php/suggest.php";
   include "./part_php/footer.php";

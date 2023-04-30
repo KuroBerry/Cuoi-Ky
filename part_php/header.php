@@ -6,12 +6,20 @@
     </a>
 
     <!-- Thanh tim kiem -->
-    <form action="search.php" method="get">
+    <form class="search-form" action="search.php" method="get">
         <div class="search-box">
-            <input type="search" name="search_key" id="search-input" placeholder="Tìm kiếm phim" />
+            <input type="search" name="search_key" id="search-input" placeholder="Tìm kiếm phim" autocomplete="off"/>
             <i class="bx bx-search"></i>
         </div>
     </form>
+
+    <!-- Avatar người dùng -->
+    <a href="" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a>
+
+    <!-- Nếu như chưa đăng nhập -->
+    <!-- <div class="login-btn">
+        <a href="">Đăng nhập</a>
+    </div> -->
 
     <!-- Thanh cong cu -->
     <div class="navbar">
