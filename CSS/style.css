@@ -130,7 +130,14 @@ header
 .login-btn
 {
     display: flex;
+    color: var(--main-color);
 }
+
+.login-btn a {
+    text-transform: uppercase;
+    color: var(--main-color);
+}
+
 .navbar
 {
     position: fixed;
@@ -280,6 +287,11 @@ header
     overflow: hidden;
     border-radius: 10px;
 }
+
+.movie-box h2 {
+    width: 90%;
+}
+
 
 .movie-box.under4 {
     position: relative;

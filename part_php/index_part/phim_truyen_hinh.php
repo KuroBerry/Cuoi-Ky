@@ -4,7 +4,7 @@
 
 require_once'./PHP/connection.php';
 
-$data = phim_bo()['data'];
+$data = phim_truyen_hinh()['data'];
 
 // var_dump($data);
 
@@ -13,7 +13,7 @@ $data = phim_bo()['data'];
 <section class="new-movies container">
 
   <div class="heading">
-    <h2 class="heading-title">PHIM BỘ</h2>
+    <h2 class="heading-title">PHIM TRUYỀN HÌNH</h2>
     <div class="page-btn">
       <a href="#" class="page-prev">
         <i class='bx bx-skip-previous' ></i>
@@ -38,7 +38,7 @@ $data = phim_bo()['data'];
     ?>
 
       <div class="movie-box">
-        <img src="<?= $d['poster'] ?>" class="movie-box-img">
+        <img src="<?= $d['poster'] ?>" class="movie-box-img lazyload" loading="lazy">
         <div class="box-text">
           <h2><?= $d['ten_phim'] ?></h2>
           <span class="movie-type"><?= $d['ten_quocgia'] ?></span>

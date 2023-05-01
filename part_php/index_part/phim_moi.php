@@ -30,7 +30,7 @@
         ?>
 
         <div class="movie-box">
-          <img src="<?= $d["poster"]?>" class="movie-box-img">
+          <img src="<?= $d["poster"]?>" class="movie-box-img lazyload" loading="lazy">
           <div class="box-text">
             <h2><?= $d["ten_phim"]?></h2>
             <span class="movie-type"><?= $d["ten_quocgia"]?></span>

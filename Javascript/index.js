@@ -54,3 +54,27 @@ closeButton.onclick = () => {
   video.classList.remove("show-video");
   myVideo.pause();
 }
+
+// Lazy load
+// document.addEventListener("DOMContentLoaded", function() {
+//   var lazyloadImages = document.querySelectorAll(".lazy");
+
+//   function lazyload() {
+//     var scrollTop = window.pageYOffset;
+//     for (var i = 0; i < lazyloadImages.length; i++) {
+//       if (lazyloadImages[i].offsetTop < (window.innerHeight + scrollTop)) {
+//         lazyloadImages[i].src = lazyloadImages[i].getAttribute("data-src");
+//         lazyloadImages[i].classList.remove("lazy");
+//       }
+//     }
+//     if (lazyloadImages.length == 0) {
+//       document.removeEventListener("scroll", lazyload);
+//       window.removeEventListener("resize", lazyload);
+//       window.removeEventListener("orientationChange", lazyload);
+//     }
+//   }
+
+//   document.addEventListener("scroll", lazyload);
+//   window.addEventListener("resize", lazyload);
+//   window.addEventListener("orientationChange", lazyload);
+// });

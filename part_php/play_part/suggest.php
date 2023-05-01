@@ -17,7 +17,7 @@
 
         <div class="swiper-slide">
           <div class="movie-box">
-            <img src="img/poster/phimchieurap/avenger.jpg" class="movie-box-img">
+            <img src="img/poster/phimchieurap/avenger.jpg" class="movie-box-img lazyload" loading="lazy">
             <div class="box-text">
               <h2>spiderman: Hồi Kết</h2>
               <span class="movie-type">Hành động</span>

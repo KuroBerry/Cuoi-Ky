@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,33 +37,34 @@
   
   if($path == 'phimmoi')
   {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_moi.php";
+    include "./part_php/index_part/phim_chieu_rap.php";
+    include "./part_php/index_part/phim_moi.php";
   }
   else if($path == 'phimbo')
   {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_bo.php";
+    include "./part_php/index_part/phim_chieu_rap.php";
+    include "./part_php/index_part/phim_bo.php";
   }
   else if($path == 'phimle')
   {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_le.php";
+    include "./part_php/index_part/phim_chieu_rap.php";
+    include "./part_php/index_part/phim_le.php";
   }
   else if($path == 'phimtruyenhinh')
   {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_truyen_hinh.php";
+    include "./part_php/index_part/phim_chieu_rap.php";
+    include "./part_php/index_part/phim_truyen_hinh.php";
   }
   else
   {
-    include "./part_php/phim_chieu_rap.php";
-    include "./part_php/phim_moi.php";
+    include "./part_php/index_part/phim_chieu_rap.php";
+    include "./part_php/index_part/phim_moi.php";
   }
 
   include "./part_php/footer.php";
   ?>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js" async=""></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script type="text/javascript" src="./Javascript/index.js"></script>
 </body>

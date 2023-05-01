@@ -14,12 +14,12 @@
     </form>
 
     <!-- Avatar người dùng -->
-    <a href="" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a>
+    <!-- <a href="" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a> -->
 
     <!-- Nếu như chưa đăng nhập -->
-    <!-- <div class="login-btn">
-        <a href="">Đăng nhập</a>
-    </div> -->
+    <div class="login-btn user">
+        <a href="login.php">Đăng nhập</a>
+    </div>
 
     <!-- Thanh cong cu -->
     <div class="navbar">

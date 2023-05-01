@@ -96,6 +96,16 @@ header {
     margin-right: 1rem;
 }
 
+.login-btn {
+    display: flex;
+    color: var(--main-color);
+}
+
+.login-btn a {
+    text-transform: uppercase;
+    color: var(--main-color);
+}
+
 .search-box .bx:hover {
     color: var(--main-color);
 }
@@ -273,6 +283,11 @@ header {
     margin-top: 5rem !important;
 }
 
+.rate-score
+{
+    display: flex;
+    margin-left: 2rem;
+}
 .play-img {
     position: absolute;
     width: 100%;

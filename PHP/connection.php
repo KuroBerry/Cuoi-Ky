@@ -14,6 +14,31 @@
         return $conn;
     }
 
+    function getCurrentPageURL() {
+        $pageURL = 'http';
+
+        if (!empty($_SERVER['HTTPS'])) 
+        {
+            if ($_SERVER['HTTPS'] == 'on') 
+            {
+                $pageURL .= "s";
+            }
+        }
+
+        $pageURL .= "://";
+
+        if ($_SERVER["SERVER_PORT"] != "80") 
+        {
+            $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+        } 
+
+        else 
+        {
+            $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+        }
+        return $pageURL;
+    }
+
     function phim_moi()
     {
         $conn = connection();
@@ -140,7 +165,7 @@
     function movieInfo($id)
     {
         $id = (int)$id;
-        $sql = 'SELECT * FROM danhsach_phim WHERE ID = ?';
+        $sql = "SELECT * FROM danhsach_phim WHERE ID = ?";
         $conn = connection();
 
         $stm = $conn -> prepare($sql);
@@ -148,7 +173,7 @@
 
         if(!$stm -> execute())
         {
-            return array('code' => 1, 'message' => "There's an error occured, please try again later");
+            return array('code' => 1, 'message' => "There an error occured, please try again later");
         }
 
         $result = $stm -> get_result();
@@ -162,7 +187,7 @@
 
         foreach ($actor as $a)
         {
-            $sql = 'SELECT * FROM dien_vien WHERE ten_dien_vien = ?';
+            $sql = "SELECT * FROM dien_vien WHERE ten_dien_vien = ?";
             $conn = connection();
 
             $stm = $conn -> prepare($sql);
@@ -170,14 +195,98 @@
 
             if(!$stm -> execute())
             {
-                return array('code' => 1, 'message' => "There's an error occured, please try again later");
+                return array('code' => 1, 'message' => "There an error occured, please try again later");
             }
 
             $result = $stm -> get_result();
-            $data[] = $result->fetch_assoc();
+
+            if($result -> num_rows == 1)
+            {
+                $data[] = $result->fetch_assoc();
+            }
+
+            else
+            {
+                $id = 1;
+                $sql = 'SELECT * FROM dien_vien WHERE ID = ?';
+                $conn = connection();
+
+                $stm = $conn -> prepare($sql);
+                $stm -> bind_param('i', $id);
+
+                if(!$stm -> execute())
+                {
+                    return array('code' => 1, 'message' => "There's an error occured, please try again later");
+                }
+
+                $result = $stm -> get_result();
+                $data[] = $result->fetch_assoc();
+            }
             
         }
 
         return $data;
+    }
+
+    function rate_display($score_string)
+    {
+        $score = floatval($score_string);
+
+        $int_score = (int)$score/1;
+        
+        if($int_score < $score && $score < $int_score + 1)
+        {
+            for($i = 1; $i <= $int_score; $i++)
+            {
+                ?>
+                    <i class="bx bxs-star"></i>
+                <?php
+            }
+
+            ?>
+                <i class="bx bxs-star-half"></i>
+            <?php
+            
+            for($i = $int_score + 2; $i <= 10; $i++)
+            {
+                ?>
+                    <i class="bx bx-star"></i>
+                <?php
+            }
+        }
+        else
+        {
+            for($i = 1; $i <= $int_score; $i++)
+            {
+                ?>
+                    <i class="bx bxs-star"></i>
+                <?php
+            }
+
+            for($i = $int_score + 1; $i <= 10; $i++)
+            {
+                ?>
+                    <i class="bx bx-star"></i>
+                <?php
+            }
+        }
+    }
+
+    function comment($id_phim)
+    {
+        $id_phim = (int)$id_phim;
+        $sql = "SELECT * FROM binh_luan WHERE id_phim = ?";
+        $conn = connection();
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('i', $id_phim);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'message' => "There an error occured, please try again later");
+        }
+
+        $result = $stm -> get_result();
+        return array('code' => 0, 'data' => $result->fetch_assoc());
     }
 ?>
