@@ -1,7 +1,7 @@
 <!-- Phần trình chiếu phim -->
 <div class="play-container container">
 <!-- Background -->
-<img src="<?=$data['back_ground'] ?>" alt="" class="play-img lazyload" loading="lazy">
+<img src="./movie/<?= $data['ID'] ?>/background.png" alt="" class="play-img lazyload" loading="lazy">
 
 <div class="play-text">
     <h2><?=$data['ten_phim'] ?></h2>
