@@ -434,7 +434,7 @@ ALTER TABLE `danhsach_phim`
 -- AUTO_INCREMENT for table `dien_vien`
 --
 ALTER TABLE `dien_vien`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `quoc_gia`
