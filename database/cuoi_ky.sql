@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 07:47 PM
+-- Generation Time: May 02, 2023 at 11:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,23 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `binh_luan`
+--
+
+CREATE TABLE `binh_luan` (
+  `id_binh_luan` int(11) NOT NULL,
+  `id_phim` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `noi_dung` text NOT NULL,
+  `rate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `danhsach_phim`
 --
 
 CREATE TABLE `danhsach_phim` (
   `ID` int(11) NOT NULL,
-  `de_muc` text NOT NULL,
-  `ten_phim` text NOT NULL,
-  `poster` text NOT NULL,
+  `de_muc` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ten_phim` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `poster` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `back_ground` text NOT NULL,
   `ma_quoc_gia` int(11) DEFAULT NULL,
-  `nam_phat_hanh` varchar(50) NOT NULL,
-  `thoi_luong` varchar(50) NOT NULL,
-  `the_loai` text NOT NULL,
-  `dien_vien` text NOT NULL,
-  `chi_tiet` text DEFAULT NULL,
-  `trailer` text NOT NULL,
-  `rate` text NOT NULL
+  `nam_phat_hanh` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `thoi_luong` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `the_loai` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `dien_vien` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `chi_tiet` text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `trailer` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `rate` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -78,8 +92,8 @@ INSERT INTO `danhsach_phim` (`ID`, `de_muc`, `ten_phim`, `poster`, `back_ground`
 
 CREATE TABLE `dien_vien` (
   `ID` int(11) NOT NULL,
-  `ten_dien_vien` text NOT NULL,
-  `anh_dien_vien` text NOT NULL
+  `ten_dien_vien` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `anh_dien_vien` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -137,7 +151,7 @@ INSERT INTO `dien_vien` (`ID`, `ten_dien_vien`, `anh_dien_vien`) VALUES
 
 CREATE TABLE `quoc_gia` (
   `id_quocgia` int(11) NOT NULL,
-  `ten_quocgia` text NOT NULL
+  `ten_quocgia` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -403,6 +417,13 @@ INSERT INTO `quoc_gia` (`id_quocgia`, `ten_quocgia`) VALUES
 --
 
 --
+-- Indexes for table `binh_luan`
+--
+ALTER TABLE `binh_luan`
+  ADD PRIMARY KEY (`id_binh_luan`),
+  ADD KEY `fk_id_binhluan_phim` (`id_phim`);
+
+--
 -- Indexes for table `danhsach_phim`
 --
 ALTER TABLE `danhsach_phim`
@@ -425,6 +446,12 @@ ALTER TABLE `quoc_gia`
 --
 
 --
+-- AUTO_INCREMENT for table `binh_luan`
+--
+ALTER TABLE `binh_luan`
+  MODIFY `id_binh_luan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `danhsach_phim`
 --
 ALTER TABLE `danhsach_phim`
@@ -441,6 +468,16 @@ ALTER TABLE `dien_vien`
 --
 ALTER TABLE `quoc_gia`
   MODIFY `id_quocgia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `binh_luan`
+--
+ALTER TABLE `binh_luan`
+  ADD CONSTRAINT `fk_id_binhluan_phim` FOREIGN KEY (`id_phim`) REFERENCES `danhsach_phim` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
