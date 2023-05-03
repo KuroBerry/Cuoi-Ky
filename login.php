@@ -23,7 +23,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         
     if ($data['code'] == 0) 
     {
-        $_SESSION['email'] = $email;
+        $_SESSION['ID'] = $data['acc']['ID'];
 
         header('Location: index.php');
         exit();
@@ -80,7 +80,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         </div>
         
         <p class="regis-message" >Bạn chưa có tài khoản? <a href="register.php">Đăng ký</a> tại đây.</p>
-        <p class="regis-message" ><a href="register.php">Quên mật khẩu?</a></p>
+        <p class="regis-message" ><a href="forget.php">Quên mật khẩu?</a></p>
 
         <?php
           if (!empty($error)) {
@@ -91,9 +91,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <button type="submit">Đăng nhập</button>
     </form>
 
-  <?php
-  include "./part_php/footer.php";
-  ?>
 </body>
 
 </html>
