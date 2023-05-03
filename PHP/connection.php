@@ -1,4 +1,14 @@
 <?php
+
+    //Import PHPMailer classes into the global namespace
+    //These must be at the top of your script, not inside a function
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    
+    //Load Composer's autoloader
+    require 'vendor/autoload.php';
+
     function connection()
     {
         $server = 'localhost';
@@ -146,14 +156,61 @@
         return array('code' => 0, 'data' => $data);
     }
 
+    function vn_to_str ($str)
+    {
+
+    $unicode = array(
+
+    'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
+
+    'd'=>'đ',
+
+    'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ',
+
+    'i'=>'í|ì|ỉ|ĩ|ị',
+
+    'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ',
+
+    'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự',
+
+    'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
+
+    'A'=>'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
+
+    'D'=>'Đ',
+
+    'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
+
+    'I'=>'Í|Ì|Ỉ|Ĩ|Ị',
+
+    'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
+
+    'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
+
+    'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
+
+    );
+
+    foreach($unicode as $nonUnicode=>$uni){
+
+    $str = preg_replace("/($uni)/i", $nonUnicode, $str);
+
+    }
+    $str = str_replace(' ','_',$str);
+
+    return $str;
+
+    }
+
     function tim_kiem($key)
     {
         $data = phim_moi()['data'];
         $result = array();
 
+
         foreach ($data as $d)
         {
-            if (strpos(strtolower($d["ten_phim"]), strtolower($key)) !== false) {
+            if (strpos(strtolower(vn_to_str($d["ten_phim"])), strtolower(vn_to_str($key))) !== false) {
                 $result[] = $d;
             }
 
@@ -275,18 +332,169 @@
     function comment($id_phim)
     {
         $id_phim = (int)$id_phim;
-        $sql = "SELECT * FROM binh_luan WHERE id_phim = ?";
+        $sql = "SELECT * FROM binh_luan,users WHERE id_phim = ?
+                AND binh_luan.id_user = users.ID";
+
         $conn = connection();
 
         $stm = $conn -> prepare($sql);
-        $stm -> bind_param('i', $id_phim);
+        $stm -> bind_param("i", $id_phim);
 
         if(!$stm -> execute())
         {
-            return array('code' => 1, 'message' => "There an error occured, please try again later");
+            return array("code" => 1, "message" => "There an error occured, please try again later");
         }
 
+        $data = array();
+
         $result = $stm -> get_result();
-        return array('code' => 0, 'data' => $result->fetch_assoc());
+
+        for($i = 0; $i < $result -> num_rows; $i ++)
+        {
+            $row = $result -> fetch_assoc();
+
+            unset($row['email']);
+            unset($row['password']);
+            unset($row['id_binh_luan']);
+            unset($row['id_user']);
+            unset($row['ID']);
+
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    function isEmailExist($email)
+    {
+        $sql = "SELECT username FROM users WHERE email = ?";
+        $conn = connection();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return null;
+        }
+
+        $result = $stm->get_result();
+
+        if ($result->num_rows >= 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function sendActivationEmail($email, $token)
+    {
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'languyenquocthinh0509@gmail.com';                     //SMTP username
+            $mail->Password   = 'tcoxswzbavjgvnsk';                             //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('languyenquocthinh0509@gmail.com', 'PHIM KHONG HAY');
+            $mail->addAddress($email, 'Customer');     //Add a recipient
+            // $mail->addAddress('ellen@example.com');               //Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Activate your account';
+            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/PHP/activate.php?email=$email&token=$token'>here</a> to activate your account";
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    function login($email, $password)
+    {
+        $conn = connection();
+        $sql = "SELECT * FROM users where email = ?";
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return array('code' => 1, 'error' => 'Cannot execute command');
+        }
+
+        // Nếu như sql chạy thành công
+        $result = $stm->get_result();
+
+        if ($result->num_rows == 0) {
+            return array('code' => 1, 'error' => 'Tài khoản không tồn tại');
+        }
+        
+        $acc = $result->fetch_assoc();
+
+        if (!password_verify($password, $acc['password'])) {
+            return array('code' => 2, 'error' => 'Mật khẩu không đúng');
+        }
+        elseif($acc['activated'] == 0){
+            return array('code' => 3, 'error' => 'Tài khoản của bạn chưa được kích hoạt');
+        } 
+        else {
+            return array('code' => 0, 'acc' => $acc);
+        }
+    }
+
+    function register($username, $email, $password)
+    {
+
+        if(isEmailExist($email))
+        {
+            return array('code' => 1, 'error' => 'Tài khoản đã tồn tại');
+        }
+
+        $conn = connection();
+
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        $rand = random_int(0, 1000);
+        $token = md5($username . '+' . $rand);
+        
+        $sql = "INSERT INTO users(username, email, password, activate_token) values(?,?,?,?)";
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ssss', $username, $email, $hash_password, $token);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 2, 'error' => 'An error occured. Please try again later');
+        }
+
+        $reset_token = '';
+        $exp = '0';
+        $sql = "INSERT INTO reset_token(email, token, expire_on) values(?,?,?)";
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('sss',$email,$reset_token, $exp);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 2, 'error' => 'An error occured. Please try again later');
+        }
+
+        sendActivationEmail($email, $token);
+        return array('code' => 0, 'error' => 'Tài khoản của bạn đã được đăng ký thành công, hãy kiểm tra mail để kích hoạt tài khoản.');
     }
 ?>

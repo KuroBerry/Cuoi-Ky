@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <header>
 <div class="nav container">
     <!-- Logo -->
@@ -13,13 +17,27 @@
         </div>
     </form>
 
+    <?php
+        if(isset($_SESSION['email']))
+        {
+            ?>
+                <a href="./test.php" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a>
+            <?php
+        }
+        else
+        {
+            ?>
+                <div class="login-btn user">
+                    <a href="login.php">Đăng nhập</a>
+                </div>
+            <?php
+        }
+    ?>
     <!-- Avatar người dùng -->
     <!-- <a href="" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a> -->
 
     <!-- Nếu như chưa đăng nhập -->
-    <div class="login-btn user">
-        <a href="login.php">Đăng nhập</a>
-    </div>
+    
 
     <!-- Thanh cong cu -->
     <div class="navbar">

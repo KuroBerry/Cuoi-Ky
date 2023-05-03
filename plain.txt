@@ -1,74 +1,32 @@
+<?php
+    if(!empty($error))
+    {
+      ?>
 
-.comment.container{
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    position: relative;
-    margin-top: 7rem !important;
-    background: #3f3f3f;
-    /* padding: 20px 20px 0px 20px; */
-}
+      <div class="row">
+        <div class="col-md-6 mt-5 mx-auto p-3 border rounded">
+            <h4>Account Activation</h4>
+            <p class="text-danger"><?= $error ?></p>
+            <p>Click <a href="login.php">here</a> to login and manage your account information.</p>
+            <a class="btn btn-success px-5" href="login.php">Login</a>
+        </div>
+      </div>
 
-.comment-heading {
-    margin: 1rem;
-    margin-left: 2rem;
-    font-size: 1.4rem;
-    color: var(--main-color);
-}
+      <?php
+    }
+    else
+    {
+      ?>
 
-.comment-list {
-    list-style: none;
-    margin: 2rem;
-    padding: 0;
-}
+      <div class="row">
+        <div class="col-md-6 mt-5 mx-auto p-3 border rounded">
+            <h4>Account Activation</h4>
+            <p class="text-success"><?= $error ?></p>
+            <p>Click <a href="login.php">here</a> to login and manage your account information.</p>
+            <a class="btn btn-success px-5" href="login.php">Login</a>
+        </div>
+      </div>  
 
-.comment {
-    margin-bottom: 2rem;
-    display: flex;
-}
-
-.comment-avatar {
-    margin-right: 20px;
-}
-
-.comment-avatar img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.comment-content {
-    flex-grow: 1;
-}
-
-.comment-author {
-    margin: 0;
-    font-size: 18px;
-    color: var(--main-color);
-}
-
-.comment-text {
-    margin: 10px 0;
-    font-size: 16px;
-    line-height: 1.5;
-    background: #5a5a5a;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.comment-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: #888;
-}
-
-.comment-meta span {
-    margin-right: 10px;
-}
-
-.comment-reply {
-    color: #007bff;
-    cursor: pointer;
-}
+      <?php
+    }
+    ?>

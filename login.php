@@ -1,3 +1,41 @@
+<?php
+session_start();
+require_once'./PHP/connection.php';
+
+$error='';
+$email = '';
+$pasword = '';
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  if (empty($email)) {
+    $error = 'Hãy nhập email của bạn';
+  } else if (empty($password)) {
+    $error = 'Hãy nhập mật khẩu của bạn';
+  } else if (strlen($password) < 6) {
+    $error = 'Mật khảu phải có ít nhất 6 kí tự';
+  } 
+  else
+  {
+    $data = login($email, $password);
+        
+    if ($data['code'] == 0) 
+    {
+        $_SESSION['email'] = $email;
+
+        header('Location: index.php');
+        exit();
+
+    } else {
+        $error = $data['error'];
+    }
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +54,6 @@
 <body>
 
     <header>
-    <!-- Logo -->
         <div class="web-heading" >
           <a href="index.php" class="logo login-header">
               <h1>Phim <span>Không Hay</span></h1>
@@ -24,7 +61,7 @@
         </div>
     </header>
 
-    <form class = "login-form" action="" method="post">
+    <form  method="POST" class="login-form" action="">
 
         <div class="login-heading">
           <h1 class="title" >Đăng nhập</h1>
@@ -45,13 +82,16 @@
         <p class="regis-message" >Bạn chưa có tài khoản? <a href="register.php">Đăng ký</a> tại đây.</p>
         <p class="regis-message" ><a href="register.php">Quên mật khẩu?</a></p>
 
+        <?php
+          if (!empty($error)) {
+              echo "<div class='error-message'>$error</div>";
+          }
+        ?>
+
         <button type="submit">Đăng nhập</button>
     </form>
 
   <?php
-  require_once'./PHP/connection.php';
-  
-
   include "./part_php/footer.php";
   ?>
 </body>

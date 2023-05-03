@@ -111,6 +111,7 @@ header {
 
 .login-form
 {
+    /* position:static; */
     /* background: #353535; */
     margin-top: 8.6rem !important;
     display: flex;
@@ -156,6 +157,7 @@ form input:hover {
     border: 1.5px solid white;
 }
 
+/* form input::autoco */
 .regis-message
 {
     margin-top: 0.7rem;
@@ -179,12 +181,31 @@ button
     margin-right: auto;
 }
 
+.error-message
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 0.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 12px;
+    border: 3px solid rgb(176, 0, 0);
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #000000;
+    font-size: 1.2rem;
+    background: rgb(240, 115, 115);
+}
 /* CSS cho phần footer */
 footer {
+    position:fixed;
+    bottom: 0;
     background-color: #333;
     color: var(--main-color);
     padding: 5px;
     margin-top: 10px;
+    width: 100%;
 }
 
 .footer-container {
@@ -263,4 +284,51 @@ footer p {
         background: #696969;
         margin-top: 1rem;
     }
+}
+
+/* Activate  */
+.activate-message
+{
+    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 12rem !important;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.4rem;
+    background: transparent;
+    width: fit-content;
+    border-radius: 16px;
+    padding: 0.8rem;
+    color: var(--main-color);
+    border: 2px solid rgb(161, 161, 161);
+}
+
+.line-active
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.8rem;
+    height: 1px;
+    width: 80%;
+    background: #696969;
+}
+.activate-message h4 {
+    margin-left: auto;
+    margin-right: auto;
+    text-transform: uppercase;
+}
+
+.activate-message p{
+    margin-top: 0.8rem;
+    color: white;
+}
+
+.login-activate
+{
+    margin-top: 2rem !important;
+    margin-right: auto;
+    margin-left: auto;
+    background: var(--main-color);
+    width: 80%;
 }
