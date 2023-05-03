@@ -1,3 +1,41 @@
+<?php
+require_once'./PHP/connection.php';
+
+session_start();
+$id_user = '';
+$id_movie = '';
+$comment = '';
+
+if(isset($_GET['id'])) {
+    $id_movie = $_GET['id'];
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_SESSION['ID'])) {
+        $id_user = $_SESSION['ID'];
+    } else {
+        echo "<script>alert('Bạn phải đăng nhập để sử dụng chức năng này');</script>";
+        exit;
+    }
+
+    if(isset($_POST['comment'])) {
+        $comment = $_POST['comment'];
+    }
+
+    if(!empty($id_movie) && !empty($id_user) && !empty($comment)) {
+        $result = add_comment($id_movie, $id_user, $comment, '0');
+
+        if($result['code'] !== 0) {
+            echo "<script>alert('{$result['error']}');</script>";
+        }
+    }
+
+    header('Location: ' . getCurrentPageURL());
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +54,9 @@
 <body>
 
   <?php
-  require_once'./PHP/connection.php';
-  $id = $_GET['id'];
   include "./part_php/header.php";
   
-  $data = movieInfo($id)['data'];
+  $data = movieInfo($id_movie)['data'];
   
   $categories_group = $data['the_loai'];
 
@@ -50,3 +86,6 @@
 </body>
 
 </html>
+<?php
+exit();
+?>
