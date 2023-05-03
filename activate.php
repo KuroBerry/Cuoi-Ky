@@ -9,27 +9,27 @@
 
     if(filter_var($email, FILTER_VALIDATE_EMAIL) == false)
     {
-      $error = 'Invalid email address';
+      $error = 'Tài khoản không hợp lệ';
     }
     elseif(strlen($token) != 32)
     {
-      $error = 'Invalid token format';
+      $error = 'Mã token không hợp lệ';
     }
-    // else{
-    //   // $result = updateActivateToken($email, $token);
-    //   if($result['code'] == 0)
-    //   {
-    //     $error = $result['error'];
-    //   }
-    //   elseif($result['code'] == 1)
-    //   {
-    //     $error = $result['error'];
-    //   }
-    //   else
-    //   {
-    //     $error = $result['error'];
-    //   }
-    // }
+    else{
+      $result = updateActivateToken($email, $token);
+      if($result['code'] == 0)
+      {
+        $error = $result['error'];
+      }
+      elseif($result['code'] == 1)
+      {
+        $error = $result['error'];
+      }
+      else
+      {
+        $error = $result['error'];
+      }
+    }
   }
   else
   {
