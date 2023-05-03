@@ -364,6 +364,23 @@
         return $data;
     }
 
+    function add_comment($id_movie, $id_user, $noi_dung, $rate)
+    {
+        $conn = connection();
+        
+        $sql = "INSERT INTO binh_luan(id_phim, id_user, noi_dung, rate) values(?,?,?,?)";
+
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ssss', $id_movie, $id_user, $noi_dung, $rate);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 2, 'error' => 'An error occured. Please try again later');
+        }
+
+
+        return array('code' => 0, 'error' => 'Đăng bình luận thành công');
+    }
     function isEmailExist($email)
     {
         $sql = "SELECT username FROM users WHERE email = ?";
@@ -416,7 +433,7 @@
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Activate your account';
-            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/PHP/activate.php?email=$email&token=$token'>here</a> to activate your account";
+            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/activate.php?email=$email&token=$token'>here</a> to activate your account";
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();
@@ -496,5 +513,154 @@
 
         sendActivationEmail($email, $token);
         return array('code' => 0, 'error' => 'Tài khoản của bạn đã được đăng ký thành công, hãy kiểm tra mail để kích hoạt tài khoản.');
+    }
+
+    function updateActivateToken($email, $token)
+    {
+        $conn = connection();
+        $sql = "SELECT username from users where email = ? and activate_token = ? AND activated = 0";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ss', $email, $token);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+
+        $result = $stm -> get_result();
+
+        if($result -> num_rows == 0)
+        {
+            return array('code' => 2, 'error' => 'Your email does not exist, please regis this email.');
+        }
+
+        $sql = "UPDATE  users set activated = 1, activate_token = '' where email = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('s', $email);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+        return array('code' => 0, 'error' => 'Your account has been activated');
+    }
+
+    function takeTokentoReset($email)
+    {
+        $conn = connection();
+        $sql = "SELECT * FROM reset_token where email = ? and token = '' ";
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return array('code' => 2, 'error' => 'An error occured, please try again');
+        }
+        $result = $stm->get_result();
+
+        if ($result->num_rows == 0) {
+            return array('code' => 1, 'error' => 'Tài khoản không tồn tại hoặc là bạn chưa nhận được Mail thôn báo');
+        }
+
+        $acc = $result->fetch_assoc();
+        //tao mat khau moi
+        //
+        $rand = random_int(0, 1000);
+        $new_token = md5($acc['username']. '+' . $rand);
+
+        $sql = "UPDATE reset_token SET token = ? where email = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ss', $new_token, $email);
+
+        if (!$stm->execute()) 
+        {
+            return array('code' => 2, 'error' => 'An error occured, please try again');
+        }
+
+        return array('code' => 0, 'newToken' => $new_token, 'error' => "Please check your email to change your password");
+        
+    }
+
+    function sendResetpasswordEmails($email, $token)
+    {
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'languyenquocthinh0509@gmail.com';                     //SMTP username
+            $mail->Password   = 'tcoxswzbavjgvnsk';                             //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('languyenquocthinh0509@gmail.com', 'Admin web');
+            $mail->addAddress($email, 'Customer');     //Add a recipient
+            // $mail->addAddress('ellen@example.com');               //Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Reset password';
+            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/reset_password.php?email=$email&token=$token'>here</a> to reset your password";
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    function resetPassword($email, $token, $newPassword)
+    {
+        $conn = connection();
+        $sql = "SELECT * from reset_token where email = ? and token = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ss', $email, $token);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+
+        $result = $stm -> get_result();
+
+        if($result -> num_rows == 0)
+        {
+            return array('code' => 2, 'error' => 'Tài khoản email của bạn không tồn tại');
+        }
+
+        $password = password_hash($newPassword, PASSWORD_DEFAULT);
+        
+        $sql = "UPDATE  users set  password = ? where email = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('ss',$password, $email);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+
+        $sql = "UPDATE reset_token set  token = '' where email = ?";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('s', $email);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+
+        return array('code' => 0, 'error' => 'You have successfully change your password');
     }
 ?>

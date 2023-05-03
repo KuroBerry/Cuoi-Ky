@@ -2,6 +2,12 @@
 session_start();
 require_once'./PHP/connection.php';
 
+if(isset($_SESSION['ID']))
+{
+  header("Location: index.php");
+}
+
+
 $error='';
 $username = '';
 $email = '';
@@ -135,12 +141,6 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         <button type="submit">Đăng nhập</button>
     </form>
 
-  <?php
-  require_once'./PHP/connection.php';
-  
-
-  include "./part_php/footer.php";
-  ?>
 </body>
 
 </html>

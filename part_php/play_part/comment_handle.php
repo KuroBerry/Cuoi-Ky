@@ -1,5 +1,6 @@
 <?php
 
+require_once'./PHP/connection.php';
 $path = getCurrentPageURL();
 header("Location: $path");
 

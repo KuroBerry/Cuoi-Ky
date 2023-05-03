@@ -18,7 +18,7 @@ session_start();
     </form>
 
     <?php
-        if(isset($_SESSION['email']))
+        if(isset($_SESSION['ID']))
         {
             ?>
                 <a href="./test.php" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a>

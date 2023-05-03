@@ -503,6 +503,7 @@ header {
     margin-bottom: 1rem;
     width: 6rem;
     height: 2rem;
+    float: right;
     background: var(--main-color);
     border: transparent;
     border-radius: 40px;
