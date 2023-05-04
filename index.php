@@ -1,7 +1,23 @@
 <?php
 
 session_start();
+require_once'./PHP/connection.php';
 
+$page = 0;
+$page_url = explode('?',getCurrentPageURL())[0];
+
+if(isset($_GET['page']))
+{
+  $page = $_GET['page'];
+  if($page == 0)
+  {
+    header('Location: index.php');
+  }
+}
+else
+{
+  $page = 1;
+}
 ?>
 
 
@@ -37,21 +53,25 @@ session_start();
   
   if($path == 'phimmoi')
   {
+    
     include "./part_php/index_part/phim_chieu_rap.php";
     include "./part_php/index_part/phim_moi.php";
   }
   else if($path == 'phimbo')
   {
+    $page_url = $page_url.'?movie=phimbo';
     include "./part_php/index_part/phim_chieu_rap.php";
     include "./part_php/index_part/phim_bo.php";
   }
   else if($path == 'phimle')
   {
+    $page_url = $page_url.'?movie=phimle';
     include "./part_php/index_part/phim_chieu_rap.php";
     include "./part_php/index_part/phim_le.php";
   }
   else if($path == 'phimtruyenhinh')
   {
+    $page_url = $page_url.'?movie=phimtruyenhinh';
     include "./part_php/index_part/phim_chieu_rap.php";
     include "./part_php/index_part/phim_truyen_hinh.php";
   }

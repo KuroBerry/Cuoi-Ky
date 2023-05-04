@@ -6,6 +6,11 @@ $error='';
 $email = '';
 $pasword = '';
 
+if(isset($_SESSION['ID']))
+{
+  header('Location: index.php');
+  exit();
+}
 if (isset($_POST['email']) && isset($_POST['password'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];

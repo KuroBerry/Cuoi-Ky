@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once'./PHP/connection.php';
 ?>
 
 <header>
@@ -20,8 +21,16 @@ session_start();
     <?php
         if(isset($_SESSION['ID']))
         {
+            $avatar = get_avatar('./users/' . $_SESSION['ID']);
+            $img_src = './users/' . $_SESSION['ID'] ."/".$avatar;
+
+            if($avatar == '')
+            {
+                $img_src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPuksIeXJ7lssfJxg3shTub7fzB06fkvhr0rFsn_s&s';
+            }
+
             ?>
-                <a href="./test.php" class="user"> <img class="user-img" src="https://via.placeholder.com/50" alt=""> </a>
+                <a href="user_interface.php" class="user"> <img class="user-img" src="<?= $img_src ?>" alt=""> </a>
             <?php
         }
         else

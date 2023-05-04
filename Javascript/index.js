@@ -55,26 +55,28 @@ closeButton.onclick = () => {
   myVideo.pause();
 }
 
-// Lazy load
-// document.addEventListener("DOMContentLoaded", function() {
-//   var lazyloadImages = document.querySelectorAll(".lazy");
+const allStar = document.querySelectorAll('.rating-comment .star')
+const ratingValue = document.querySelector('.rating-comment .rate')
 
-//   function lazyload() {
-//     var scrollTop = window.pageYOffset;
-//     for (var i = 0; i < lazyloadImages.length; i++) {
-//       if (lazyloadImages[i].offsetTop < (window.innerHeight + scrollTop)) {
-//         lazyloadImages[i].src = lazyloadImages[i].getAttribute("data-src");
-//         lazyloadImages[i].classList.remove("lazy");
-//       }
-//     }
-//     if (lazyloadImages.length == 0) {
-//       document.removeEventListener("scroll", lazyload);
-//       window.removeEventListener("resize", lazyload);
-//       window.removeEventListener("orientationChange", lazyload);
-//     }
-//   }
+allStar.forEach((item, idx)=> {
+	item.addEventListener('click', function () {
+		let click = 0
+		ratingValue.value = idx + 1
+    // alert(ratingValue.value);
 
-//   document.addEventListener("scroll", lazyload);
-//   window.addEventListener("resize", lazyload);
-//   window.addEventListener("orientationChange", lazyload);
-// });
+		allStar.forEach(i=> {
+			i.classList.replace('bxs-star', 'bx-star')
+			i.classList.remove('active')
+		})
+		for(let i=0; i<allStar.length; i++) {
+			if(i <= idx) {
+				allStar[i].classList.replace('bx-star', 'bxs-star')
+				allStar[i].classList.add('active')
+			} 
+      else {
+				allStar[i].style.setProperty('--i', click)
+				click++
+			}
+		}
+	})
+})

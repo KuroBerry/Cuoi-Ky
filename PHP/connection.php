@@ -328,6 +328,19 @@
             }
         }
     }
+    
+    function get_avatar($dir)
+    {
+        $files = scandir($dir);
+
+        foreach($files as $file) {
+            // loại bỏ "." và ".."
+            if($file !== '.' && $file !== '..' && $file =='avatar.jpg' || $file == 'avatar.png') {
+                // $path = $dir.DIRECTORY_SEPARATOR.$file;
+                return $file;
+            }
+        }
+    }
 
     function comment($id_phim)
     {
@@ -356,7 +369,6 @@
             unset($row['email']);
             unset($row['password']);
             unset($row['id_binh_luan']);
-            unset($row['id_user']);
             unset($row['ID']);
 
             $data[] = $row;
@@ -531,7 +543,7 @@
 
         if($result -> num_rows == 0)
         {
-            return array('code' => 2, 'error' => 'Your email does not exist, please regis this email.');
+            return array('code' => 2, 'error' => 'Email của bạn chưa được đăng ký');
         }
 
         $sql = "UPDATE  users set activated = 1, activate_token = '' where email = ?";
@@ -542,7 +554,27 @@
         {
             return array('code' => 1, 'error' => 'An error occured, please try again later');
         }
-        return array('code' => 0, 'error' => 'Your account has been activated');
+
+        $sql = "SELECT ID from users where email = ? AND activated = 1";
+        $stm = $conn -> prepare($sql);
+        $stm -> bind_param('s', $email);
+
+        if(!$stm -> execute())
+        {
+            return array('code' => 1, 'error' => 'An error occured, please try again later');
+        }
+
+        $result = $stm -> get_result();
+
+        if($result -> num_rows == 0)
+        {
+            return array('code' => 3, 'error' => 'Có lỗi, hãy liên hệ admin để được giải quyết');
+        }
+
+        $data = $result-> fetch_assoc();
+
+        mkdir('./users/' . $data['ID']);
+        return array('code' => 0, 'error' => 'Tài khoản của bạn đã được kích hoạt', 'data' => $data);
     }
 
     function takeTokentoReset($email)

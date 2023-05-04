@@ -1,32 +1,9 @@
-<?php
-    if(!empty($error))
-    {
-      ?>
-
-      <div class="row">
-        <div class="col-md-6 mt-5 mx-auto p-3 border rounded">
-            <h4>Account Activation</h4>
-            <p class="text-danger"><?= $error ?></p>
-            <p>Click <a href="login.php">here</a> to login and manage your account information.</p>
-            <a class="btn btn-success px-5" href="login.php">Login</a>
-        </div>
-      </div>
-
-      <?php
-    }
-    else
-    {
-      ?>
-
-      <div class="row">
-        <div class="col-md-6 mt-5 mx-auto p-3 border rounded">
-            <h4>Account Activation</h4>
-            <p class="text-success"><?= $error ?></p>
-            <p>Click <a href="login.php">here</a> to login and manage your account information.</p>
-            <a class="btn btn-success px-5" href="login.php">Login</a>
-        </div>
-      </div>  
-
-      <?php
-    }
-    ?>
+if(!$get_ep == $ep)
+            {
+                ?>
+                    <a href="<?= $current_path . "&ep=" .$ep ?>">Tập <?= $ep?></a>
+                <?php
+            }
+           ?>
+            <!-- <a href="<?= $current_path . "&ep=" .$ep ?>" class="chosen-episode">Tập <?= $ep?></a> -->
+           <?php

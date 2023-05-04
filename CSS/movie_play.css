@@ -363,12 +363,14 @@ header {
 .video-container.show-video
 {
     display: flex;
+    z-index: 400;
 }
 
 .video-box {
     position: relative;
-    width: 82%;
+    width: 75%;
 }
+
 
 .video-box #myvideo {
     width: 100%;
@@ -383,6 +385,61 @@ header {
     color: var(--main-color);
 }
 
+/* Các tập của bộ phim */
+.episode {
+    margin-top: 2rem !important;
+    position: relative;
+    background: transparent;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.unchosen-episode {
+    display: inline-block;
+    color: var(--main-color);
+    text-align: center;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    text-decoration: none;
+    margin-left: 0.3rem;
+    border: 2px solid var(--main-color);
+    margin-bottom: 2rem !important;
+}
+
+.episode a:hover {
+    background-color: #777;
+}
+
+.episode::-webkit-scrollbar {
+    height: 0.4rem;
+    background: transparent;
+    border-radius: 5px;
+}
+
+.episode::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+}
+
+.chosen-episode
+{
+    display: inline-block;
+    color: var(--body-color);
+    text-align: center;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    text-decoration: none;
+    margin-left: 0.3rem;
+    border: 2px solid var(--main-color);
+    margin-bottom: 2rem !important;
+    background: var(--main-color);
+    pointer-events: none;
+}
+
+/* Thông tin phim */
 .about-movie
 {
     margin-top: 2rem !important;
@@ -569,21 +626,48 @@ header {
     border-radius: 8px;
 }
 
-.comment-meta {
+.user-rate
+{
+    color: var(--main-color);
+}
+
+.rating-comment {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: #888;
+    grid-gap: .5rem;
+    font-size: 1.2rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
 }
 
-.comment-meta span {
-    margin-right: 10px;
-}
-
-.comment-reply {
-    color: #007bff;
+.rating-comment .star {
     cursor: pointer;
+}
+
+.rating-comment .star.active {
+    opacity: 0;
+    animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.rating-comment .star:hover {
+    transform: scale(1.1);
 }
 
 /* CSS cho phần footer */
@@ -849,6 +933,7 @@ footer p {
     }
 
     .tags span {
+        font-size: x-small;
         padding-left: 10px;
     }
 

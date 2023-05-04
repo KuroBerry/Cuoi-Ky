@@ -38,7 +38,7 @@ $data = phim_chieu_rap()['data'];
               <h2><?= $d['ten_phim'] ?></h2>
               <span class="movie-type"><?= $d['ten_quocgia'] ?></span>
 
-              <a href="movie_play.php?id=<?= $d['ID'] ?>" class="watch-btn play-btn">
+              <a href="movie_play.php?id=<?= $d['ID'] ?>&ep=1" class="watch-btn play-btn">
                 <i class='bx bx-play-circle' ></i>
                 
               </a>

@@ -17,6 +17,7 @@
     }
     else{
       $result = updateActivateToken($email, $token);
+      var_dump($result);
       if($result['code'] == 0)
       {
         $error = $result['error'];
@@ -71,7 +72,7 @@
             
     <div class="line-active"></div>
 
-    <p>Tài khoản của bạn đã được kích hoạt thành công</p>
+    <p>Tài khoản của bạn đã được kích hoạt thành công </p>
 
     <button onclick="location.href='./login.php' ">Đăng nhập</button>
 

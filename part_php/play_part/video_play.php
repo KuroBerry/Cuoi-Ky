@@ -38,12 +38,13 @@
 
     <div class="video-box">
     <!-- Video -->
-    <video id="myvideo" src="./movie/OshinoKo.mp4" controls></video>
-
+    <video id="myvideo" src="./movie/<?= $data['ID'] ?>/tap<?= $get_ep ?>.mp4" controls></video>
+    
     <!-- Close video -->
     <i class='bx bx-x close-video' ></i>
 
 </div>
+
 
 </div>
 
