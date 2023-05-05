@@ -16,12 +16,18 @@ if(isset($_SESSION['ID']))
     $avatar_path = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPuksIeXJ7lssfJxg3shTub7fzB06fkvhr0rFsn_s&s';
   }
 
+  if(isset($_POST['edit_profile']))
+  {
+    header('Location: user_profile.php');
+  }
 
   if(isset($_POST['logout']))
   {
     session_destroy();
     header('Location: index.php');
   }
+
+  
 }
 else
 {
@@ -64,14 +70,19 @@ else
             <img src="<?= $avatar_path ?>" alt="" srcset="">
         </div>
 
+        <div class="use-heading">
+            <h1>Xin chào Người Dùng!</h1>
+        </div>
+
+
         <div class="line"></div>
 
         <div class="edit">
-          <button name="submit" type="submit">edit profile</button>
+          <button name="edit_profile" type="submit">Phim đã thích</button>
         </div>
 
         <div class="log-out">
-            <button name="logout" type="submit">Logout</button>
+            <button name="logout" type="submit">Đăng xuất</button>
         </div>
     </form>
 </body>

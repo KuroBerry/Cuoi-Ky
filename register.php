@@ -126,7 +126,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         
                 
         <div class="input-title">
-          <h4>Email</h4>
+          <h4>Nhập lại mật khẩu</h4>
           <input name="password_confirm" type="password" placeholder="Hãy nhập lại mật khẩu" autocomplete="off">
         </div>
 

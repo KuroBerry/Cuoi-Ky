@@ -695,4 +695,5 @@
 
         return array('code' => 0, 'error' => 'You have successfully change your password');
     }
+    
 ?>

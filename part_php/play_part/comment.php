@@ -1,9 +1,3 @@
-<?php
-
-
-
-?>
-
 
 <!-- Phần bình luận -->
 <div class="comment container">
