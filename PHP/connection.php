@@ -335,7 +335,7 @@
 
         foreach($files as $file) {
             // loại bỏ "." và ".."
-            if($file !== '.' && $file !== '..' && $file =='avatar.jpg' || $file == 'avatar.png') {
+            if($file !== '.' && $file !== '..' && $file =='avatar.jpg' || $file == 'avatar.png' || $file == 'avatar.jpeg') {
                 // $path = $dir.DIRECTORY_SEPARATOR.$file;
                 return $file;
             }
@@ -414,7 +414,7 @@
         return false;
     }
 
-    function sendActivationEmail($email, $token)
+    function sendActivationEmail($email, $token, $link)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -445,7 +445,7 @@
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Activate your account';
-            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/activate.php?email=$email&token=$token'>here</a> to activate your account";
+            $mail->Body    = "Click <a href = '$link/activate.php?email=$email&token=$token'>here</a> to activate your account";
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();
@@ -487,7 +487,7 @@
         }
     }
 
-    function register($username, $email, $password)
+    function register($username, $email, $password, $link)
     {
 
         if(isEmailExist($email))
@@ -523,7 +523,7 @@
             return array('code' => 2, 'error' => 'An error occured. Please try again later');
         }
 
-        sendActivationEmail($email, $token);
+        sendActivationEmail($email, $token, $link);
         return array('code' => 0, 'error' => 'Tài khoản của bạn đã được đăng ký thành công, hãy kiểm tra mail để kích hoạt tài khoản.');
     }
 
@@ -613,7 +613,7 @@
         
     }
 
-    function sendResetpasswordEmails($email, $token)
+    function sendResetpasswordEmails($email, $token, $link)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -644,7 +644,7 @@
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Reset password';
-            $mail->Body    = "Click <a href = 'http://localhost:8080/Cuoiky_Web/reset_password.php?email=$email&token=$token'>here</a> to reset your password";
+            $mail->Body    = "Click <a href = '$link/reset_password.php?email=$email&token=$token'>here</a> to reset your password";
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();

@@ -13,6 +13,7 @@ $username = '';
 $email = '';
 $password = '';
 $password_confirm = '';
+$link = explode('/re',getCurrentPageURL())[0];
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm'])) {
   
@@ -52,7 +53,8 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
   }
 
   else {
-    $result = register($username, $email, $password);
+
+    $result = register($username, $email, $password, $link);
 
     if($result['code'] == 0)
     {
@@ -121,6 +123,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
       
         <div class="input-title">
           <h4>Mật khẩu</h4>
+          <?= $link ?>
           <input name="password" type="password" name="password" placeholder="Mật khẩu">
         </div>
         

@@ -1,7 +1,10 @@
 <?php
     require_once('./PHP/connection.php');
+
     $error = '';
     $email = '';
+    $link = explode('/f', getCurrentPageURL())[0];
+
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
 
@@ -32,7 +35,7 @@
                     window.location.href = 'login.php';
                 </script>
                 <?php
-                sendResetpasswordEmails($email, $result['newToken']);
+                sendResetpasswordEmails($email, $result['newToken'], $link);
             }
         }
     }

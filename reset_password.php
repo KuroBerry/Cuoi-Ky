@@ -24,7 +24,6 @@
         {
             if (isset($_POST['email']) && isset($_POST['password']) &&
                 isset($_POST['password_confirm'])) {
-
                 $email = $_POST['email'];
                 $pass = $_POST['password'];
                 $pass_confirm = $_POST['password_confirm'];

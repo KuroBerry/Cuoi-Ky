@@ -175,3 +175,73 @@ header {
 {
     transform: scale(1.07);
 }
+
+.user-heading
+{
+    margin-top: 2rem !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    font-size: 1rem;
+}
+
+.user-heading span
+{
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+/* responsive */
+@media(max-width : 1063px)
+{
+    .user-heading {
+        font-size: 0.8rem;
+    }
+
+    .edit button {
+        font-size: 1.4rem;
+    }
+
+    .log-out button {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width : 822px) {
+    .user-heading {
+        font-size: 0.6rem;
+    }
+
+    .info-container {
+        width: 50%;
+    }
+
+    .edit button {
+        font-size: 1.2rem;
+    }
+
+    .log-out
+    {
+        margin-top: 1rem !important;
+    }
+
+    .log-out button {
+        font-size: 1.2rem;
+    }
+}
+
+@media(max-width : 610px) {
+    .edit button {
+        font-size: 1rem;
+    }
+
+    .log-out button {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width : 590px) {
+    .info-container {
+        width: 60%;
+    }
+}

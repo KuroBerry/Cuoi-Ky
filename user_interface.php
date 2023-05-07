@@ -2,8 +2,9 @@
 session_start();
 require_once'./PHP/connection.php';
 
-if(isset($_SESSION['ID']))
+if(isset($_SESSION['ID']) && isset($_SESSION['name']))
 {
+  $name = $_SESSION['name'];
   $path = explode('/user_in', getCurrentPageURL())[0];
   $avatar = get_avatar( __DIR__. DIRECTORY_SEPARATOR. 'users' .DIRECTORY_SEPARATOR. $_SESSION['ID']);
 
@@ -70,8 +71,8 @@ else
             <img src="<?= $avatar_path ?>" alt="" srcset="">
         </div>
 
-        <div class="use-heading">
-            <h1>Xin chào Người Dùng!</h1>
+        <div class="user-heading">
+            <h1>Xin chào <span><?= $name ?></span> </h1>
         </div>
 
 

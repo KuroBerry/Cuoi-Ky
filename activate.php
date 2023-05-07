@@ -17,12 +17,8 @@
     }
     else{
       $result = updateActivateToken($email, $token);
-      var_dump($result);
+      // var_dump($result);
       if($result['code'] == 0)
-      {
-        $error = $result['error'];
-      }
-      elseif($result['code'] == 1)
       {
         $error = $result['error'];
       }
@@ -77,10 +73,6 @@
     <button onclick="location.href='./login.php' ">Đăng nhập</button>
 
     </div>
-
-  <?php
-    include "./part_php/footer.php";
-  ?>
 </body>
 
 </html>
