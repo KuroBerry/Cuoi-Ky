@@ -67,12 +67,12 @@
             ?>
 
             <div class="movie-box">
-              <img src="<?= $d["poster"]?>" class="movie-box-img">
+              <img src="./movie/<?= $d['ID'] ?>/poster.png" class="movie-box-img">
               <div class="box-text">
                 <h2><?= $d["ten_phim"]?></h2>
                 <span class="movie-type"><?= $d["ten_quocgia"]?></span>
 
-                <a href="./movie_play.php?id=<?= $d['ID'] ?>" class="watch-btn play-btn">
+                <a href="./movie_play.php?id=<?= $d['ID'] ?>&ep=1" class="watch-btn play-btn">
                   <i class='bx bx-play-circle' ></i>
                   
                 </a>
