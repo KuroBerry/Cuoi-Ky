@@ -1,7 +1,7 @@
 <!-- Noi dung phim -->
 <div class="about-movie container">
 <h2><?=$data['ten_phim'] ?></h2>
-<p><?=$data['chi_tiet'] ?> (Chỗ này là chi tiết nè nhưng mà chưa ghi vô trong database :v)</p>
+<p><?=$data['chi_tiet'] ?></p>
 
 <!-- Dien vien -->
 <h2 class="cast-heading">Diễn Viên</h2>
