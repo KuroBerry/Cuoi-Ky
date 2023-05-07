@@ -1,4 +1,4 @@
-var swiper = new Swiper(".theater-content", {
+const swiper = new Swiper(".theater-content", {
   slidersPerView: 1,
   spaceBetween: 10,
   autoplay: {
@@ -33,10 +33,9 @@ var swiper = new Swiper(".theater-content", {
     900: {
       slidesPerView: 4,
       spaceBetween: 20,
-    }
-  }
+    },
+  },
 });
-
 
 //Show video
 let playButton = document.querySelector(".play-movie");
@@ -48,35 +47,33 @@ playButton.onclick = () => {
   video.classList.add("show-video");
   console.log(video.classList);
   myVideo.play();
-}
+};
 
 closeButton.onclick = () => {
   video.classList.remove("show-video");
   myVideo.pause();
-}
+};
 
-const allStar = document.querySelectorAll('.rating-comment .star')
-const ratingValue = document.querySelector('.rating-comment .rate')
+const allStar = document.querySelectorAll(".rating-comment .star");
+const ratingValue = document.querySelector(".rating-comment .rate");
 
-allStar.forEach((item, idx)=> {
-	item.addEventListener('click', function () {
-		let click = 0
-		ratingValue.value = idx + 1
-    // alert(ratingValue.value);
-
-		allStar.forEach(i=> {
-			i.classList.replace('bxs-star', 'bx-star')
-			i.classList.remove('active')
-		})
-		for(let i=0; i<allStar.length; i++) {
-			if(i <= idx) {
-				allStar[i].classList.replace('bx-star', 'bxs-star')
-				allStar[i].classList.add('active')
-			} 
-      else {
-				allStar[i].style.setProperty('--i', click)
-				click++
-			}
-		}
-	})
-})
+allStar.forEach((item, idx) => {
+  item.addEventListener("click", function () {
+    let click = 0;
+    ratingValue.value = idx + 1;
+    
+    allStar.forEach((i) => {
+      i.classList.replace("bxs-star", "bx-star");
+      i.classList.remove("active");
+    });
+    for (let i = 0; i < allStar.length; i++) {
+      if (i <= idx) {
+        allStar[i].classList.replace("bx-star", "bxs-star");
+        allStar[i].classList.add("active");
+      } else {
+        allStar[i].style.setProperty("--i", click);
+        click++;
+      }
+    }
+  });
+});

@@ -4,4 +4,3 @@
     session_destroy();
 
     echo __DIR__;
-?>
